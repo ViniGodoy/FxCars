@@ -122,7 +122,7 @@ public final class Vector2 implements Cloneable {
      * @return The perpendicular vector.
      */
     public static Vector2 perp(Vector2 v1) {
-        return new Vector2(v1.x, -v1.y);
+        return new Vector2(-v1.y, v1.x);
     }
 
     /**
@@ -221,12 +221,22 @@ public final class Vector2 implements Cloneable {
 
     /**
      * Returns a resized copy of v.
-     * @param v The vector to resize.
+     *
+     * @param v       The vector to resize.
      * @param newSize The new size
      * @return The resized copy of v.
      */
     public static Vector2 resize(Vector2 v, float newSize) {
         return v.clone().resize(newSize);
+    }
+
+    /**
+     * Returns true if the vector is zero or null.
+     * @param v The vector to test
+     * @return True if zero or null.
+     */
+    public static boolean isZero(Vector2 v) {
+        return v == null || v.isZero();
     }
 
     /**
@@ -258,6 +268,7 @@ public final class Vector2 implements Cloneable {
 
     /**
      * Changes this Vector2 size. Equivalent to v.normalize().multiply(size)
+     *
      * @param newSize The new size.
      * @return The resized vector.
      */
@@ -374,14 +385,14 @@ public final class Vector2 implements Cloneable {
      * @return True if this is a unitary (normal) vector.
      */
     public boolean isUnit() {
-        return sizeSqr() == 1.0f;
+        return Math.abs(sizeSqr() - 1.0) < 1e-9;
     }
 
     /**
      * @return True if this is the zero vector.
      */
     public boolean isZero() {
-        return sizeSqr() == 0;
+        return sizeSqr() < 1e-12;
     }
 
     /**
