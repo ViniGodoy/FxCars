@@ -9,20 +9,21 @@ import javafx.scene.paint.LinearGradient
 import javafx.scene.paint.Stop
 
 abstract class Car(
-    private val color: Color,
-    private var _position: Vector2,
+    private val color: Color, 
+    position: Vector2,
     orientation: Double = 0.0,
     val mass: Double = 1.0,
     val maxForce: Double = 350.0,
     val maxSpeed: Double = 500.0
 ) : Cloneable {
-    private var _velocity = byAngle(orientation)
-    private var lastSteering = Vector2()
+    var velocity = byAngle(orientation) 
+        private set
+    var position = position
+        private set 
+    val direction: Vector2
+        get() = if (velocity.isZero) byAngle(0.0) else normalize(velocity)
 
-    // ---- Accessors ----
-    val position: Vector2 get() = _position
-    val velocity: Vector2 get() = _velocity
-    val direction: Vector2 get() = if (_velocity.isZero) byAngle(0.0) else normalize(_velocity)
+    private var lastSteering = Vector2()
 
     abstract fun calculateSteering(world: World): Vector2
 
@@ -32,16 +33,16 @@ abstract class Car(
 
         val impulse = lastSteering * world.secs
         val acceleration = impulse / mass
-        _velocity = truncate(_velocity + acceleration, maxSpeed)
-        _position += _velocity * world.secs
+        velocity = truncate(velocity + acceleration, maxSpeed)
+        position += velocity * world.secs
 
         val w = world.width / 2.0
-        if (_position.x < -(w + 20)) _position = _position.copy(x = w)
-        else if (_position.x > (w + 20)) _position = _position.copy(x = -w)
+        if (position.x < -(w + 20)) position = position.copy(x = w)
+        else if (position.x > (w + 20)) position = position.copy(x = -w)
 
         val h = world.height / 2.0
-        if (_position.y < -(h + 20)) _position = _position.copy(y = h)
-        else if (_position.y > (h + 20)) _position = _position.copy(y = -h)
+        if (position.y < -(h + 20)) position = position.copy(y = h)
+        else if (position.y > (h + 20)) position = position.copy(y = -h)
     }
 
     // -----------------------------------------------------
@@ -49,8 +50,8 @@ abstract class Car(
     // -----------------------------------------------------
     fun draw(g: GraphicsContext) {
         g.save()
-        g.translate(_position.x, _position.y)
-        g.rotate(Math.toDegrees(_velocity.angle))
+        g.translate(position.x, position.y)
+        g.rotate(Math.toDegrees(velocity.angle))
 
         g.save()
         g.scale(-0.5, 0.5)
@@ -64,14 +65,14 @@ abstract class Car(
 
     // ----- Debug arrows -----
     private fun drawDebugArrows(g: GraphicsContext) {
-        drawArrow(g, _velocity, Color.BLUE)
+        drawArrow(g, velocity, Color.BLUE)
         drawArrow(g, lastSteering, Color.ORANGERED)
     }
 
     private fun drawArrow(g: GraphicsContext, vector: Vector2?, color: Color?) {
         if (vector?.isZero ?: true) return
 
-        val origin = _position + direction * 12.0
+        val origin = position + direction * 12.0
         val tip = origin + vector * 0.2
         val dir = tip - origin
 

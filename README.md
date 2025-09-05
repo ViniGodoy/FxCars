@@ -1,4 +1,4 @@
-Cars project for JavaFX
+Cars project for Kotlin + JavaFX
 
 This is my simulator designed to teach Steering Behaviors in Math&Physics classes for games.
 

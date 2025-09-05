@@ -7,7 +7,7 @@ import javafx.scene.paint.Color
 
 class StudentCar : Car(
     color = Color.RED,
-    _position = Vector2()
+    position = Vector2()
 ) {
     /**
      * Deve calcular o steering behavior para esse carro
