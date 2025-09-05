@@ -273,6 +273,10 @@ public final class Vector2 implements Cloneable {
      * @return The resized vector.
      */
     public Vector2 resize(double newSize) {
+        if (this.isZero()) {
+            this.x = newSize;
+            this.y = 0;
+        }
         return this.normalize().multiply(newSize);
     }
 
