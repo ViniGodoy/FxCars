@@ -4,5 +4,5 @@ This is my simulator designed to teach Steering Behaviors in Math&Physics classe
 
 Students must change files inside ```cars.student``` package:
 
-* [Setup.java](./src/main/kotlin/cars/student/Setup.kt): Returns a list of cars that will be part of the simulation
-* [StudentCar.java](./src/main/kotlin/cars/student/StudentCar.kt): Template car. Does not move.
+* [Setup.kts](./src/main/kotlin/cars/student/Setup.kt): Returns a list of cars that will be part of the simulation
+* [StudentCar.kts](./src/main/kotlin/cars/student/StudentCar.kt): Template car. Does not move.
