@@ -104,9 +104,6 @@ abstract class Car(
             val halfL = l / 2.0
             val halfW = w / 2.0
 
-            val wingColor = Color.DARKGRAY
-            val tireColor = Color.BLACK
-
             val bodyGrad = LinearGradient(
                 -halfL, 0.0, halfL, 0.0, false, CycleMethod.NO_CYCLE,
                 Stop(0.0, bodyColor.darker()),
@@ -114,6 +111,7 @@ abstract class Car(
                 Stop(1.0, bodyColor.darker())
             )
 
+            val tireColor = Color.BLACK
             g.fill = tireColor
             val tireW = 12
             val tireH = 7
@@ -135,6 +133,7 @@ abstract class Car(
             g.fill = Color.rgb(25, 25, 32, 0.9)
             g.fillOval(-l * 0.12, -w * 0.18, l * 0.28, w * 0.36)
 
+            val wingColor = bodyColor.darker().darker()
             g.fill = wingColor
             g.fillRoundRect(halfL - 10, -w * 0.70, 12.0, w * 1.40, 6.0, 6.0)
             g.fillRoundRect(-halfL - 4, -w * 0.50, 8.0, w * 0.98, 6.0, 6.0)
