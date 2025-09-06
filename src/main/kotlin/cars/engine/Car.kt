@@ -9,17 +9,17 @@ import javafx.scene.paint.LinearGradient
 import javafx.scene.paint.Stop
 
 abstract class Car(
-    private val color: Color, 
+    private val color: Color,
     position: Vector2,
     orientation: Double = 0.0,
     val mass: Double = 1.0,
     val maxForce: Double = 350.0,
     val maxSpeed: Double = 500.0
 ) : Cloneable {
-    var velocity = byAngle(orientation) 
+    var velocity = byAngle(orientation)
         private set
     var position = position
-        private set 
+        private set
     val direction: Vector2
         get() = if (velocity.isZero) byAngle(0.0) else normalize(velocity)
 
@@ -48,7 +48,7 @@ abstract class Car(
     // -----------------------------------------------------
     // Drawing
     // -----------------------------------------------------
-    fun draw(g: GraphicsContext) {
+    fun draw(g: GraphicsContext, showDebugInfo: Boolean) {
         g.save()
         g.translate(position.x, position.y)
         g.rotate(Math.toDegrees(velocity.angle))
@@ -60,7 +60,9 @@ abstract class Car(
 
         g.restore() // back to world space
 
-        drawDebugArrows(g)
+        if (showDebugInfo) {
+            drawDebugArrows(g)
+        }
     }
 
     // ----- Debug arrows -----

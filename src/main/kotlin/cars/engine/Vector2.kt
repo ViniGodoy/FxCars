@@ -14,8 +14,12 @@ data class Vector2(val x: Double, val y: Double) {
     // Basic operations
     operator fun plus(other: Vector2) = Vector2(x + other.x, y + other.y)
     operator fun minus(other: Vector2) = Vector2(x - other.x, y - other.y)
+
     operator fun times(scalar: Double) = Vector2(x * scalar, y * scalar)
+    operator fun times(scalar: Int) = Vector2(x * scalar, y * scalar)
+
     operator fun div(scalar: Double) = Vector2(x / scalar, y / scalar)
+    operator fun div(scalar: Int) = Vector2(x / scalar, y / scalar)
 
     // Indexed access
     operator fun get(i: Int): Double = when (i) {
@@ -50,6 +54,7 @@ data class Vector2(val x: Double, val y: Double) {
 
 // Allow scalar * vector
 operator fun Double.times(v: Vector2) = v * this
+operator fun Int.times(v: Vector2) = v * this
 
 fun normalize(v: Vector2) = v / v.size
 
