@@ -12,10 +12,10 @@ class StudentCar : Car(
     /**
      * Deve calcular o steering behavior para esse carro
      *
-     * O parâmetro world contém diversos métodos utilitários:
+     * O parâmetro world contém as propriedades do mundo:
      * - world.clickPos: posição do último click (ou null)
      * - world.mousePos: posição atual do cursor do mouse
-     * - world.getNeighbors(radius): carros vizinhos (exclui o próprio carro)
+     * - world.neighbors: carros vizinhos
      * - world.secs: segundos desde o último quadro
      * - world.width/height: dimensões atuais do canvas
      *

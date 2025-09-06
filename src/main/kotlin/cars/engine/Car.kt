@@ -146,3 +146,5 @@ abstract class Car(
         }
     }
 }
+
+fun distance(car1: Car, car2: Car) = distance(car1.position, car2.position)

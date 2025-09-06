@@ -4,7 +4,7 @@ import cars.engine.Car
 
 object Setup {
     /**
-     * Retorne uma lista com todos os carros que serão desenhados no exercício.
+     * Retorne uma lista com todos os carros que serão desenhados no exercício
      */
     fun createCars(): List<Car> {
         return listOf(
