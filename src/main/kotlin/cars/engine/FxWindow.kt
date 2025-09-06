@@ -33,7 +33,7 @@ class FxWindow : Application() {
 
         // Create label
         debugLabel = Label()
-        debugLabel.textFill = Color.BLACK
+        debugLabel.textFill = Color.DIMGRAY
         debugLabel.style = "-fx-font-size: 10px; -fx-background-color: rgba(255,255,255,0.0);"
         updateDebugLabel()
 
