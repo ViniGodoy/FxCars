@@ -19,8 +19,8 @@ class FxWindow : Application() {
     private lateinit var canvas: Canvas
     private lateinit var cars: List<Car>
 
-    private var clickPos: Vector2? = null // relative to center
-    private var mousePos: Vector2? = null // absolute scene coords
+    private var clickPos: Vector2? = null
+    private var mousePos: Vector2? = null
 
     private var debugMode = true
     private lateinit var debugLabel: Label
@@ -50,15 +50,19 @@ class FxWindow : Application() {
         canvas.widthProperty().bind(Bindings.selectDouble(scene.widthProperty()))
         canvas.heightProperty().bind(Bindings.selectDouble(scene.heightProperty()))
 
-        // Input handlers (use CURRENT canvas size)
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED) {
-            val cx = canvas.width / 2.0
-            val cy = canvas.height / 2.0
-            clickPos = Vector2(it.x - cx, it.y - cy)
+            clickPos = Vector2(
+                x= it.x - canvas.width / 2.0,
+                y= it.y - canvas.height / 2.0
+            )
         }
         scene.addEventFilter(MouseEvent.MOUSE_MOVED) {
-            mousePos = Vector2(it.x, it.y)
+            mousePos = Vector2(
+                x= it.x - canvas.width / 2.0,
+                y= it.y - canvas.height / 2.0
+            )
         }
+
         scene.setOnKeyPressed {
             if (it.text.lowercase() == "d") {
                 debugMode = !debugMode
