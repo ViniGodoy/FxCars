@@ -9,8 +9,8 @@ import javafx.scene.paint.LinearGradient
 import javafx.scene.paint.Stop
 
 abstract class Car(
-    private val color: Color,
-    position: Vector2,
+    private val color: Color = Color.BLUE,
+    position: Vector2 = Vector2(),
     orientation: Double = 0.0,
     val mass: Double = 1.0,
     val maxForce: Double = 350.0,
@@ -22,6 +22,8 @@ abstract class Car(
         private set
     val direction: Vector2
         get() = if (velocity.isZero) byAngle(0.0) else normalize(velocity)
+    val speed: Double
+        get() = velocity.size
 
     private var lastSteering = Vector2()
 
