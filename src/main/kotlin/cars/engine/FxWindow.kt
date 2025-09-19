@@ -29,7 +29,7 @@ class FxWindow : Application() {
         cars = Setup.createCars()
 
         stage.title = "Steering behaviors"
-        canvas = Canvas(INIT_WIDTH, INIT_HEIGHT)
+        canvas = Canvas(INITIAL_WIDTH, INITIAL_HEIGHT)
 
         // Create label
         debugLabel = Label()
@@ -43,7 +43,7 @@ class FxWindow : Application() {
         debugLabel.translateX = 10.0   // small padding
         debugLabel.translateY = -10.0
 
-        val scene = Scene(root, INIT_WIDTH, INIT_HEIGHT)
+        val scene = Scene(root, INITIAL_WIDTH, INITIAL_HEIGHT)
 
         // Make stage resizable and keep canvas in sync with the scene size
         stage.isResizable = true
@@ -136,7 +136,7 @@ class FxWindow : Application() {
     }
 
     companion object {
-        private const val INIT_WIDTH = 1024.0
-        private const val INIT_HEIGHT = 768.0
+        public const val INITIAL_WIDTH = 1024.0
+        public const val INITIAL_HEIGHT = 768.0
     }
 }
