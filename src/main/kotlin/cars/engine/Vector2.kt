@@ -28,6 +28,10 @@ data class Vector2(val x: Double, val y: Double) {
         else -> throw IndexOutOfBoundsException()
     }
 
+    fun dot(other: Vector2): Double {
+        return x * other.x + y * other.y
+    }
+
     // --- Equality with tolerance ---
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -86,8 +90,18 @@ fun resize(v: Vector2, size: Double): Vector2 =
     if (v.isZero) Vector2(1.0, 0.0)
     else v * (size / v.size)
 
+/**
+ * Calcula o vetor de reflexo.
+ *
+ * @param ray vetor contendo o raio a ser refletido
+ * @param normal normal da superfície
+ * @return O vetor do reflexo
+ */
+fun reflex(ray: Vector2, normal: Vector2): Vector2 {
+    return ray - 2 * ray.dot(normal) * normal
+}
+
 private fun q8(v: Double): Long {
-    // If you expect only finite values, you can drop this branch.
     if (!v.isFinite()) {
         return when {
             v.isNaN() -> 0L
