@@ -1,9 +1,9 @@
 package cars.student
 
 import cars.engine.Car
-import cars.engine.RND
 import cars.engine.Vector2
 import cars.engine.World
+import cars.engine.distance
 import cars.engine.randomAngle
 import cars.engine.randomPosition
 import javafx.scene.paint.Color
@@ -51,6 +51,7 @@ object Setup {
 
             override fun calculateSteering(world: World) =
                 world.neighbors
+                    .filter { distance(this, it) < 300.0 }
                     .fold(Vector2()) { a, r -> a + flee(this, r.position) }
                     .let { if (it.size > 10) it else wander.force() }
         }
